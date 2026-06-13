@@ -3,8 +3,7 @@ name: Daily Telegram Hadith
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 9 * * *"
-      timezone: "Europe/Istanbul"
+    - cron: "30 8 * * *"
 
 permissions:
   contents: read
@@ -12,6 +11,7 @@ permissions:
 jobs:
   post:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,8 +29,4 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           HADITH_JSON_PATH: hadiths.json
-          TIMEZONE: Europe/Istanbul
-          START_DATE: "2026-01-01"
-          MESSAGE_TITLE: "📚 حديث اليوم"
-          DEFAULT_SOURCE: "رياض الصالحين"
-run: python bot.py
+        run: python bot.py
