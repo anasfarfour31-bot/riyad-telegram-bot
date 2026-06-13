@@ -12,7 +12,7 @@ TEXT_KEYS = (
     "text", "hadith", "matn", "nass", "content", "body", "arabic", "ar", "quote", "message"
 )
 META_KEYS = (
-    "number", "no", "id", "hadith_no", "hadith_number", "chapter", "bab", "book", "source", "reference", "url"
+    "number", "no", "id", "hadith_no", "hadith_number", "chapter", "bab", "book", "source", "reference"
 )
 CONTAINER_KEYS = (
     "hadiths", "items", "data", "results", "records", "pages", "chapters", "sections", "books"
@@ -153,7 +153,7 @@ def build_message(record: Dict[str, str]) -> str:
     chapter = record.get("chapter") or record.get("bab")
     book = record.get("book")
     source = record.get("source") or record.get("reference") or default_source
-    url = record.get("url") or os.getenv("SOURCE_URL", "https://app.turath.io/book/2348")
+    url = record.get("url") or os.getenv("SOURCE_URL", "")
 
     if source:
         details.append(f"المصدر: {source}")
